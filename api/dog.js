@@ -1,4 +1,4 @@
-import axios from '@nuxtjs/axios';
+import $axios from '@nuxtjs/axios';
 
 class DogApi {
     constructor() {
@@ -6,7 +6,7 @@ class DogApi {
     }
 
     breeds() {
-        return axios.get(`${this.apiBase}/breeds/list/all`)
+        return $axios.$get(`${this.apiBase}/breeds/list/all`)
             .then(json => {
                 return json.data.message;
             })
