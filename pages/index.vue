@@ -16,15 +16,24 @@ import dogApi from '@/api/dog';
 import {mapState} from 'vuex';
 
 export default {
-  async asyncData({ $axios }) {
-    const url = 'https://dog.ceo/api/breeds/list/all';
-    const result = await $axios.$get(url)
-      .then(json => {
+  // async asyncData({ $axios }) {
+  //   const url = 'https://dog.ceo/api/breeds/list/all';
+  //   const result = await $axios.$get(url)
+  //     .then(json => {
         
-        store.commit('breed_list_update', json);
-        console.log(this.$store.state);
+  //       this.$store.commit('breed_list_update', json);
+  //       console.log(this.$store.state);
+  //     })
+  //     .catch(e => ({ error: e }));
+  // },
+  async fetch ({ store, params, $axios }) {
+    const url = 'https://dog.ceo/api/breeds/list/all';
+    await $axios.$get(url)
+      .then(json => {
+        console.log(json)
+        store.commit('breed_list_update', json.message)
       })
-      .catch(e => ({ error: e }));
+      .catch(e => ({ error: e }))
   },
   computed: mapState(['breed_list'])
 }
