@@ -1,10 +1,14 @@
 export const state = () => ({
-    breed_list: {}
+    breed_list: {},
+    dog_list: {},
 });
 
 export const mutations = {
     breed_list_update(state, payload) {
         state.breed_list = {...payload}
+    },
+    dog_list_update(state, payload) {
+        state.dog_list = [...payload]
     }
 }
 
